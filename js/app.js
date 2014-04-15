@@ -1,13 +1,18 @@
 window.addEventListener('load', function() { 'use strict';
 
     var Todos = window.Todos = Ember.Application.create();
+    Todos.ApplicationAdapter = DS.FixtureAdapter.extend();
 
     // Routes -----------------------------------------------
     Todos.Router.map(function() {
         this.resource('todos', { path: '/' });
     });
 
-    Todos.IndexRoute = Ember.Route.extend({});
+    Todos.TodosRoute = Ember.Route.extend({
+        model: function() {
+            return this.store.find('todo');
+        }
+    });
 
     // Model ------------------------------------------------
     Todos.Todo = DS.Model.extend({
@@ -16,7 +21,7 @@ window.addEventListener('load', function() { 'use strict';
     });
 
     // Fixtures ---------------------------------------------
-    Todos.Todo.FIXTRES = [
+    Todos.Todo.FIXTURES = [
         {
             id: 1,
             title: 'Learn Ember.js',
