@@ -1,0 +1,12 @@
+{
+    "browser": true,
+    "node": false,
+
+    "devel": true,
+    "debug": true,
+
+    "globals": {
+        "Em": true,
+        "Ember"
+    }
+}
