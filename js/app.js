@@ -1,11 +1,11 @@
 window.addEventListener('load', function() { 'use strict';
 
-    var App = window.App = Ember.Application.create();
+    var Todos = window.Todos = Ember.Application.create();
 
-    App.Router.map(function() {
-        // put your routes here
+    Todos.Router.map(function() {
+        this.resource('todos', { path: '/' });
     });
 
-    App.IndexRoute = Ember.Route.extend({});
+    Todos.IndexRoute = Ember.Route.extend({});
 
 });
