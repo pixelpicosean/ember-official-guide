@@ -1,11 +1,11 @@
-App = Ember.Application.create();
+window.addEventListener('load', function() { 'use strict';
 
-App.Router.map(function() {
-  // put your routes here
-});
+    var App = window.App = Ember.Application.create();
 
-App.IndexRoute = Ember.Route.extend({
-  model: function() {
-    return ['red', 'yellow', 'blue'];
-  }
+    App.Router.map(function() {
+        // put your routes here
+    });
+
+    App.IndexRoute = Ember.Route.extend({});
+
 });

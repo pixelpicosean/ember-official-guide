@@ -7,6 +7,6 @@
 
     "globals": {
         "Em": true,
-        "Ember"
+        "Ember": true
     }
 }
