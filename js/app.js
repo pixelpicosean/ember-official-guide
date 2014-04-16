@@ -43,6 +43,23 @@ window.addEventListener('load', function() { 'use strict';
         }
     });
 
+    Todos.TodoController = Ember.ObjectController.extend({
+        isCompleted: function(key, value) {
+            var model = this.get('model');
+
+            if (value === undefined) {
+                // Property being used as a getter
+                return model.get('isCompleted');
+            }
+            else {
+                // Property being used as a setter
+                model.set('isCompleted', value);
+                model.save();
+                return value;
+            }
+        }.property('model.isCompleted')
+    });
+
     // Fixtures ---------------------------------------------
     Todos.Todo.FIXTURES = [
         {
