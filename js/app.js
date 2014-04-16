@@ -20,6 +20,15 @@ window.addEventListener('load', function() { 'use strict';
         isCompleted: DS.attr('boolean')
     });
 
+    // View -------------------------------------------------
+    Todos.EditTodoView = Ember.TextField.extend({
+        didInsertElement: function() {
+            this.$().focus();
+        }
+    });
+    Ember.Handlebars.helper('edit-todo', Todos.EditTodoView);
+
+
     // Controller -------------------------------------------
     Todos.TodosController = Ember.ArrayController.extend({
         // Properties
@@ -71,6 +80,16 @@ window.addEventListener('load', function() { 'use strict';
         actions: {
             editTodo: function() {
                 this.set('isEditing', true);
+            },
+            acceptChanges: function() {
+                this.set('isEditing', false);
+
+                if (Ember.isEmpty(this.get('model.title'))) {
+                    this.send('removeTodo');
+                }
+                else {
+                    this.get('model').save();
+                }
             }
         }
     });
