@@ -22,6 +22,15 @@ window.addEventListener('load', function() { 'use strict';
 
     // Controller -------------------------------------------
     Todos.TodosController = Ember.ArrayController.extend({
+        // Properties
+        remaining: function() {
+            return this.filterBy('isCompleted', false).get('length');
+        }.property('@each.isCompleted'),
+        inflection: function() {
+            return (this.get('remaining') === 1) ? 'item' : 'items';
+        }.property('remaining'),
+
+        // Actions
         actions: {
             createTodo: function() {
                 // Get the todo title set by the "New Todo" text field
