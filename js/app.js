@@ -1,7 +1,9 @@
 window.addEventListener('load', function() { 'use strict';
 
     var Todos = window.Todos = Ember.Application.create();
-    Todos.ApplicationAdapter = DS.FixtureAdapter.extend();
+    Todos.ApplicationAdapter = DS.LSAdapter.extend({
+        namespace: 'todos-emberjs'
+    });
 
     // Routes -----------------------------------------------
     Todos.Router.map(function() {
