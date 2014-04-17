@@ -81,8 +81,14 @@ window.addEventListener('load', function() { 'use strict';
         hasCompleted: function() {
             return this.get('completed') > 0;
         }.property('completed'),
-        allAreDone: function() {
-            return !!this.get('length') && this.everyProperty('isCompleted', true);
+        allAreDone: function(key, value) {
+            if (value === undefined) {
+                return !!this.get('length') && this.everyProperty('isCompleted', true);
+            }
+            else {
+                this.setEach('isCompleted', value);
+                this.invoke('save');
+            }
         }.property('@each.isCompleted'),
 
         // Actions
