@@ -81,6 +81,9 @@ window.addEventListener('load', function() { 'use strict';
         hasCompleted: function() {
             return this.get('completed') > 0;
         }.property('completed'),
+        allAreDone: function() {
+            return !!this.get('length') && this.everyProperty('isCompleted', true);
+        }.property('@each.isCompleted'),
 
         // Actions
         actions: {
