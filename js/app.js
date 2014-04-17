@@ -8,6 +8,7 @@ window.addEventListener('load', function() { 'use strict';
         this.resource('todos', { path: '/' }, function() {
             // Add this function to disable default index
             // routes which enables "TodosIndexRoute"
+            this.route('active');
         });
     });
 
@@ -20,6 +21,19 @@ window.addEventListener('load', function() { 'use strict';
     Todos.TodosIndexRoute = Ember.Route.extend({
         model: function() {
             return this.modelFor('todos');
+        }
+    });
+
+    Todos.TodosActiveRoute = Ember.Route.extend({
+        model: function() {
+            return this.store.filter('todo', function(todo) {
+                return !todo.get('isCompleted');
+            });
+        },
+        renderTemplate: function(controller) {
+            this.render('todos/index', {
+                controller: controller
+            });
         }
     });
 
