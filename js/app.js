@@ -5,12 +5,21 @@ window.addEventListener('load', function() { 'use strict';
 
     // Routes -----------------------------------------------
     Todos.Router.map(function() {
-        this.resource('todos', { path: '/' });
+        this.resource('todos', { path: '/' }, function() {
+            // Add this function to disable default index
+            // routes which enables "TodosIndexRoute"
+        });
     });
 
     Todos.TodosRoute = Ember.Route.extend({
         model: function() {
             return this.store.find('todo');
+        }
+    });
+
+    Todos.TodosIndexRoute = Ember.Route.extend({
+        model: function() {
+            return this.modelFor('todos');
         }
     });
 
